@@ -1,3 +1,3 @@
-# Cadastro de veículos em Java
+# Sistema de Cadastro de Veículos
 
-Este é um projeto que foi (está sendo) desenvolvido para a disciplina **Programação I** do curso **Tecnologia em Análise e Desenvolvimento de Sistemas**, ministrada pelo professor **Flávio Vilela**, docente do **Instituto Federal de Goiás, Câmpus Jataí, Unidade Flamboyant**.
+Projeto desenvolvido no âmbito da disciplina **Programação II**, com supervisão do professor **Flávio de Assis Vilela**, docente do curso de **Tecnologia em Análise e Desenvolvimento de Sistemas** do **Instituto Federal de Goiás – Câmpus Jataí, Unidade Flamboyant.**
