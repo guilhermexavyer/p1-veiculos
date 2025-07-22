@@ -1,162 +1,208 @@
 package prog2_projeto1.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.log4j.Logger;
-
 import prog2_projeto1.DBConnection;
 import prog2_projeto1.model.Cliente;
 
 public class ClienteDAO {
     Logger logger = Logger.getLogger(ClienteDAO.class);
 
-    public boolean salvar(Cliente cliente) {
+    public boolean salvar(Cliente modelo) throws SQLException {
         logger.info("--- Início do método DAO Salvar ---");
 
         try {
             Connection connection = DBConnection.getInstance().getConnection();
 
-            String sql = "INSERT INTO Cliente (nome, cpf, rg, telefone, referencia_comercial, data_nascimento) " +
-                         "VALUES (?, ?, ?, ?, ?, ?)";
+            String insertcliente = "INSERT INTO cliente " +
+                    "(nome, cpf, rg, endereco, telefone, email, data_cadastro, referencia_comercial, data_nascimento)" +
+                    "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, cliente.getNome());
-            stmt.setString(2, cliente.getCpf());
-            stmt.setString(3, cliente.getRg());
-            stmt.setString(4, cliente.getTelefone());
-            stmt.setString(5, cliente.getReferenciaComercial());
-            stmt.setDate(6, java.sql.Date.valueOf(cliente.getDataNascimento()));
+            PreparedStatement preparedStatement1 = connection.prepareStatement(insertcliente);
+            preparedStatement1.setString(1, modelo.getNome());
+            preparedStatement1.setString(2, modelo.getCpf());
+            preparedStatement1.setString(3, modelo.getRg());
+            preparedStatement1.setString(4, modelo.getEndereco());
+            preparedStatement1.setString(5, modelo.getTelefone());
+            preparedStatement1.setString(6, modelo.getEmail());
+            preparedStatement1.setDate(7, (Date) modelo.getData_cadastro());
+            preparedStatement1.setString(8, modelo.getReferencia_comercial());
+            preparedStatement1.setDate(9, modelo.getData_nascimento());
+            logger.info("String insert Cliente preparada: " + preparedStatement1);
+            int resultado = preparedStatement1.executeUpdate();
 
-            int resultado = stmt.executeUpdate();
+            if (resultado > 0) {
+                logger.info("Inseriu Cliente: " + resultado);
+                logger.info("--- Fim do método DAO Salvar ---");
+                return true;
+            } else {
+                logger.info("Retorno menor que zero " + resultado);
+                logger.info("--- Fim do método DAO Salvar ---");
+                return false;
 
-            logger.info("Cliente inserido: " + resultado);
-            return resultado > 0;
-
+            }
         } catch (Exception e) {
-            logger.error("Erro ao salvar cliente: " + e.getMessage());
+            logger.error("Ocorreu um erro ao tentar salvar: " + e.getMessage());
+            logger.error("--- Fim do método DAO Salvar ---");
             return false;
         }
     }
 
-    public boolean alterar(Cliente cliente) {
+    public boolean alterar(Cliente modelo) throws SQLException {
         logger.info("--- Início do método DAO Alterar ---");
 
         try {
             Connection connection = DBConnection.getInstance().getConnection();
 
-            String sql = "UPDATE Cliente SET nome = ?, cpf = ?, rg = ?, telefone = ?, referencia_comercial = ?, data_nascimento = ? WHERE id = ?";
+            String updatePessoa = "update cliente set nome = ?, cpf = ?, rg = ?, endereco = ?, telefone = ?, email = ?, data_cadastro = ?, referencia_comercial = ?, data_nascimento = ? where id = ?";
 
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, cliente.getNome());
-            stmt.setString(2, cliente.getCpf());
-            stmt.setString(3, cliente.getRg());
-            stmt.setString(4, cliente.getTelefone());
-            stmt.setString(5, cliente.getReferenciaComercial());
-            stmt.setDate(6, java.sql.Date.valueOf(cliente.getDataNascimento()));
-            stmt.setInt(7, cliente.getId());
+            PreparedStatement preparedStatement1 = connection.prepareStatement(updatePessoa);
+            preparedStatement1.setString(1, modelo.getNome());
+            preparedStatement1.setString(2, modelo.getCpf());
+            preparedStatement1.setString(3, modelo.getRg());
+            preparedStatement1.setString(4, modelo.getEndereco());
+            preparedStatement1.setString(5, modelo.getTelefone());
+            preparedStatement1.setString(6, modelo.getEmail());
+            preparedStatement1.setDate(7, (Date) modelo.getData_cadastro());
+            preparedStatement1.setString(8, modelo.getReferencia_comercial());
+            preparedStatement1.setDate(9, modelo.getData_nascimento());
+            preparedStatement1.setInt(10, modelo.getId());
 
-            int resultado = stmt.executeUpdate();
+            logger.info("String update cliente preparada: " + preparedStatement1);
+            int resultadocliente = preparedStatement1.executeUpdate();
 
-            logger.info("Cliente atualizado: " + resultado);
-            return resultado > 0;
+            if (resultadocliente > 0) {
+                logger.info("Retorno maior que zero: " + resultadocliente);
+                logger.info("--- Fim do método DAO Alterar ---");
+                return true;
+            } else {
+                logger.info("Retorno menor que zero ");
+                logger.info("--- Fim do método DAO Alterar ---");
+                return false;
 
+            }
         } catch (Exception e) {
-            logger.error("Erro ao alterar cliente: " + e.getMessage());
+            logger.error("Ocorreu um erro ao tentar alterar: " + e.getMessage());
+            logger.error("--- Fim do método DAO Alterar ---");
             return false;
         }
     }
 
-    public boolean excluir(Cliente cliente) {
+    public boolean excluir(Cliente modelo) throws SQLException {
         logger.info("--- Início do método DAO Excluir ---");
 
         try {
             Connection connection = DBConnection.getInstance().getConnection();
 
-            String sql = "DELETE FROM Cliente WHERE id = ?";
+            String insertPessoa = "delete from cliente where id = ?";
+            PreparedStatement preparedStatement1 = connection.prepareStatement(insertPessoa);
+            preparedStatement1.setInt(1, modelo.getId());
+            logger.info("String delete cliente preparada: " + preparedStatement1);
+            int resultadocliente = preparedStatement1.executeUpdate();
 
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, cliente.getId());
+            if (resultadocliente > 0) {
+                logger.info("Retorno maior que zero " + resultadocliente);
+                logger.info("--- Fim do método DAO Excluir ---");
+                return true;
+            } else {
+                logger.info("Retorno menor que zero " + resultadocliente);
+                logger.info("--- Fim do método DAO Excluir ---");
+                return false;
 
-            int resultado = stmt.executeUpdate();
-
-            logger.info("Cliente excluído: " + resultado);
-            return resultado > 0;
-
+            }
         } catch (Exception e) {
-            logger.error("Erro ao excluir cliente: " + e.getMessage());
+            logger.error("Ocorreu um erro ao tentar excluir: " + e.getMessage());
+            logger.error("--- Fim do método DAO Excluir ---");
             return false;
         }
     }
 
-    public Cliente buscar(int id) {
-        logger.info("--- Início do método DAO Buscar por ID ---");
+    public boolean buscar(Cliente modelo) throws SQLException {
 
-        try {
-            Connection connection = DBConnection.getInstance().getConnection();
-
-            String sql = "SELECT * FROM Cliente WHERE id = ?";
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                Cliente cliente = mapearCliente(rs);
-                logger.info("Cliente encontrado.");
-                return cliente;
-            }
-
-        } catch (Exception e) {
-            logger.error("Erro ao buscar cliente: " + e.getMessage());
-        }
-
-        return null;
+        return false;
     }
 
-    public List<Cliente> buscarTodos() {
-        logger.info("--- Início do método DAO Buscar Todos ---");
-
-        List<Cliente> lista = new ArrayList<>();
-
+    public List<Cliente> buscarTodos() throws SQLException {
         try {
+            logger.info("--- Início do método DAO Buscar Todos ---");
+
             Connection connection = DBConnection.getInstance().getConnection();
 
-            String sql = "SELECT * FROM Cliente";
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
+            String consulta = "select * from cliente";
+            List<Cliente> lista = new ArrayList<Cliente>();
+            Cliente cliente;
 
-            while (rs.next()) {
-                lista.add(mapearCliente(rs));
+            PreparedStatement preparedStatement = connection.prepareStatement(consulta);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            logger.info("Consulta executada: " + preparedStatement);
+
+            while (resultSet.next()) {
+                cliente = new Cliente();
+                cliente.setId(resultSet.getInt("id"));
+                cliente.setNome(resultSet.getString("nome"));
+                cliente.setCpf(resultSet.getString("cpf"));
+                cliente.setRg(resultSet.getString("rg"));
+                cliente.setEndereco(resultSet.getString("endereco"));
+                cliente.setTelefone(resultSet.getString("telefone"));
+                cliente.setEmail(resultSet.getString("email"));
+                cliente.setData_cadastro(resultSet.getDate("data_cadastro"));
+                cliente.setReferencia_comercial(resultSet.getString("referencia_comercial"));
+                cliente.setData_nascimento(resultSet.getDate("data_nascimento"));
+
+                lista.add(cliente);
             }
 
-            logger.info("Total de clientes encontrados: " + lista.size());
+            logger.info("Quantidade de registros pesquisados: " + lista.size());
+            logger.info("--- Fim do método DAO Buscar Todos ---");
 
-        } catch (Exception e) {
-            logger.error("Erro ao buscar todos os clientes: " + e.getMessage());
+            return lista;
+        } catch (SQLException e) {
+            logger.error("Ocorreu um erro ao tentar buscar todos: " + e.getMessage());
+            return null;
         }
-
-        return lista;
     }
 
-    private Cliente mapearCliente(ResultSet rs) throws SQLException {
-        Cliente cliente = new Cliente();
+    public Cliente buscar(int id) throws SQLException {
+        try {
+            logger.info("--- Início do método DAO Buscar por Id ---");
 
-        cliente.setId(rs.getInt("id"));
-        cliente.setNome(rs.getString("nome"));
-        cliente.setCpf(rs.getString("cpf"));
-        cliente.setRg(rs.getString("rg"));
-        cliente.setTelefone(rs.getString("telefone"));
-        cliente.setReferenciaComercial(rs.getString("referencia_comercial"));
+            Connection connection = DBConnection.getInstance().getConnection();
 
-        java.sql.Date dataSql = rs.getDate("data_nascimento");
-        if (dataSql != null) {
-            cliente.setDataNascimento(dataSql.toLocalDate());
+            String consulta = "select * from cliente where id = ?";
+            Cliente cliente = new Cliente();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(consulta);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            logger.info("Consulta executada: " + preparedStatement);
+
+            while (resultSet.next()) {
+                cliente = new Cliente();
+                cliente.setId(resultSet.getInt("id"));
+                cliente.setNome(resultSet.getString("nome"));
+                cliente.setCpf(resultSet.getString("cpf"));
+                cliente.setRg(resultSet.getString("rg"));
+                cliente.setEndereco("endereco");
+                cliente.setTelefone(resultSet.getString("telefone"));
+                cliente.setEmail(resultSet.getString("email"));
+                cliente.setData_cadastro(resultSet.getDate("data_cadastro"));
+                cliente.setReferencia_comercial(resultSet.getString("referencia_comercial"));
+                cliente.setData_nascimento(resultSet.getDate("data_nascimento"));
+            }
+
+            logger.info("--- Fim do método DAO Buscar por Id ---");
+
+            return cliente;
+        } catch (SQLException e) {
+            logger.error("Ocorreu um erro ao tentar buscar: " + e.getMessage());
+            return null;
         }
-
-        return cliente;
     }
 }

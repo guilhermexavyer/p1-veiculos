@@ -15,25 +15,25 @@ import prog2_projeto1.model.Veiculo;
 public class VeiculoDAO {
     Logger logger = Logger.getLogger(VeiculoDAO.class);
 
-    public boolean salvar(Veiculo modelo) {
+    public boolean salvar(Veiculo modelo) throws SQLException {
         logger.info("--- Início do método DAO Salvar ---");
 
         try {
             Connection connection = DBConnection.getInstance().getConnection();
 
             String insertVeiculo = "INSERT INTO veiculo " +
-                    "(nome, ano, modelo, cor, placa, unico_dono, categoria_id) " +
-                    "values (?, ?, ?, ?, ?, ?, ?)";
+                    "(nome, ano, modelo, categoria_id, cor, placa, unico_dono, valor) " +
+                    "values (?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement1 = connection.prepareStatement(insertVeiculo);
             preparedStatement1.setString(1, modelo.getNome());
             preparedStatement1.setInt(2, modelo.getAno());
             preparedStatement1.setString(3, modelo.getModelo());
-            preparedStatement1.setString(4, modelo.getCor());
-            preparedStatement1.setString(5, modelo.getPlaca());
-            preparedStatement1.setBoolean(6, modelo.isUnicoDono() ? true : false);
-            preparedStatement1.setInt(7, modelo.getCategoria().getId());
-
+            preparedStatement1.setInt(4, modelo.getCategoria().getId());
+            preparedStatement1.setString(5, modelo.getCor());
+            preparedStatement1.setString(6, modelo.getPlaca());
+            preparedStatement1.setBoolean(7, modelo.isUnico_dono() ? true : false);
+            preparedStatement1.setDouble(8, modelo.getValor());
             logger.info("String insert Veículo preparada: " + preparedStatement1);
             int resultado = preparedStatement1.executeUpdate();
 
@@ -60,25 +60,18 @@ public class VeiculoDAO {
         try {
             Connection connection = DBConnection.getInstance().getConnection();
 
-            String updatePessoa = "update veiculo set " +
-                    "nome = ?, " +
-                    "ano = ?,  " +
-                    "modelo = ?,  " +
-                    "cor = ?,  " +
-                    "placa = ?,  " +
-                    "unico_dono = ?, " +
-                    "categoria_id = ?  " +
-                    "where id = ?";
+            String updatePessoa = "update veiculo set nome = ?, ano = ?, modelo = ?, categoria_id = ?, cor = ?, placa = ?, unico_dono = ?, valor = ? where id = ?";
 
             PreparedStatement preparedStatement1 = connection.prepareStatement(updatePessoa);
             preparedStatement1.setString(1, modelo.getNome());
             preparedStatement1.setInt(2, modelo.getAno());
             preparedStatement1.setString(3, modelo.getModelo());
-            preparedStatement1.setString(4, modelo.getCor());
-            preparedStatement1.setString(5, modelo.getPlaca());
-            preparedStatement1.setBoolean(6, modelo.isUnicoDono() ? true : false);
-            preparedStatement1.setInt(7, modelo.getCategoria().getId());
-            preparedStatement1.setInt(8, modelo.getId());
+            preparedStatement1.setInt(4, modelo.getCategoria().getId());
+            preparedStatement1.setString(5, modelo.getCor());
+            preparedStatement1.setString(6, modelo.getPlaca());
+            preparedStatement1.setBoolean(7, modelo.isUnico_dono() ? true : false);
+            preparedStatement1.setDouble(8, modelo.getValor());
+            preparedStatement1.setInt(9, modelo.getId());
 
             logger.info("String update veículo preparada: " + preparedStatement1);
             int resultadoVeiculo = preparedStatement1.executeUpdate();
@@ -130,7 +123,7 @@ public class VeiculoDAO {
     }
 
     public boolean buscar(Veiculo modelo) throws SQLException {
-        // TODO Auto-generated method stub
+
         return false;
     }
 
@@ -154,14 +147,11 @@ public class VeiculoDAO {
                 veiculo.setNome(resultSet.getString("nome"));
                 veiculo.setAno(resultSet.getInt("ano"));
                 veiculo.setModelo(resultSet.getString("modelo"));
+                veiculo.setCategoria(new CategoriaDAO().buscar(resultSet.getInt("categoria_id")));
                 veiculo.setCor(resultSet.getString("cor"));
                 veiculo.setPlaca(resultSet.getString("placa"));
-                veiculo.setUnicoDono(resultSet.getString("unico_dono") == "Sim" ? true : false);
-
-                CategoriaDAO categoriaDAO = new CategoriaDAO();
-                int categoriaId = resultSet.getInt("categoria_id");
-
-                veiculo.setCategoria(categoriaDAO.buscar(categoriaId));
+                veiculo.setUnico_dono(resultSet.getString("unico_dono") == "Sim" ? true : false);
+                veiculo.setValor(resultSet.getDouble("valor"));
                 lista.add(veiculo);
             }
 
@@ -196,10 +186,11 @@ public class VeiculoDAO {
                 veiculo.setNome(resultSet.getString("nome"));
                 veiculo.setAno(resultSet.getInt("ano"));
                 veiculo.setModelo(resultSet.getString("modelo"));
+                veiculo.setCategoria(new CategoriaDAO().buscar(resultSet.getInt("categoria_id")));
                 veiculo.setCor(resultSet.getString("cor"));
                 veiculo.setPlaca(resultSet.getString("placa"));
-                veiculo.setUnicoDono(resultSet.getString("unico_dono") == "Sim" ? true : false);
-                veiculo.setCategoria(new CategoriaDAO().buscar(resultSet.getInt("categoria_id")));
+                veiculo.setUnico_dono(resultSet.getString("unico_dono") == "Sim" ? true : false);
+                veiculo.setValor(resultSet.getDouble("valor"));
             }
 
             logger.info("--- Fim do método DAO Buscar por Id ---");

@@ -15,18 +15,18 @@ import prog2_projeto1.model.Categoria;
 public class CategoriaDAO {
     Logger logger = Logger.getLogger(CategoriaDAO.class);
 
-    public boolean salvar(Categoria modelo) {
+    public boolean salvar(Categoria modelo) throws SQLException {
         logger.info("--- Início do método DAO Salvar ---");
 
         try {
             Connection connection = DBConnection.getInstance().getConnection();
 
-            String insertCategoria = "INSERT INTO categoria " +
-                    "(nome) " +
+            String insertcategoria = "INSERT INTO categoria " +
+                    "(descricao)" +
                     "values (?)";
 
-            PreparedStatement preparedStatement1 = connection.prepareStatement(insertCategoria);
-            preparedStatement1.setString(1, modelo.getNome());
+            PreparedStatement preparedStatement1 = connection.prepareStatement(insertcategoria);
+            preparedStatement1.setString(1, modelo.getDescricao());
             logger.info("String insert Categoria preparada: " + preparedStatement1);
             int resultado = preparedStatement1.executeUpdate();
 
@@ -53,17 +53,17 @@ public class CategoriaDAO {
         try {
             Connection connection = DBConnection.getInstance().getConnection();
 
-            String updatePessoa = "update categoria set nome = ? where id = ?";
+            String updatePessoa = "update categoria set descricao = ? where id = ?";
 
             PreparedStatement preparedStatement1 = connection.prepareStatement(updatePessoa);
-            preparedStatement1.setString(1, modelo.getNome());
+            preparedStatement1.setString(1, modelo.getDescricao());
             preparedStatement1.setInt(2, modelo.getId());
 
             logger.info("String update categoria preparada: " + preparedStatement1);
-            int resultadoCategoria = preparedStatement1.executeUpdate();
+            int resultadocategoria = preparedStatement1.executeUpdate();
 
-            if (resultadoCategoria > 0) {
-                logger.info("Retorno maior que zero: " + resultadoCategoria);
+            if (resultadocategoria > 0) {
+                logger.info("Retorno maior que zero: " + resultadocategoria);
                 logger.info("--- Fim do método DAO Alterar ---");
                 return true;
             } else {
@@ -89,14 +89,14 @@ public class CategoriaDAO {
             PreparedStatement preparedStatement1 = connection.prepareStatement(insertPessoa);
             preparedStatement1.setInt(1, modelo.getId());
             logger.info("String delete categoria preparada: " + preparedStatement1);
-            int resultadoCategoria = preparedStatement1.executeUpdate();
+            int resultadocategoria = preparedStatement1.executeUpdate();
 
-            if (resultadoCategoria > 0) {
-                logger.info("Retorno maior que zero " + resultadoCategoria);
+            if (resultadocategoria > 0) {
+                logger.info("Retorno maior que zero " + resultadocategoria);
                 logger.info("--- Fim do método DAO Excluir ---");
                 return true;
             } else {
-                logger.info("Retorno menor que zero " + resultadoCategoria);
+                logger.info("Retorno menor que zero " + resultadocategoria);
                 logger.info("--- Fim do método DAO Excluir ---");
                 return false;
 
@@ -109,7 +109,7 @@ public class CategoriaDAO {
     }
 
     public boolean buscar(Categoria modelo) throws SQLException {
-        // TODO Auto-generated method stub
+
         return false;
     }
 
@@ -130,8 +130,7 @@ public class CategoriaDAO {
             while (resultSet.next()) {
                 categoria = new Categoria();
                 categoria.setId(resultSet.getInt("id"));
-                categoria.setNome(resultSet.getString("nome"));
-
+                categoria.setDescricao(resultSet.getString("descricao"));
                 lista.add(categoria);
             }
 
@@ -163,7 +162,7 @@ public class CategoriaDAO {
             while (resultSet.next()) {
                 categoria = new Categoria();
                 categoria.setId(resultSet.getInt("id"));
-                categoria.setNome(resultSet.getString("nome"));
+                categoria.setDescricao(resultSet.getString("descricao"));
             }
 
             logger.info("--- Fim do método DAO Buscar por Id ---");

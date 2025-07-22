@@ -1,35 +1,34 @@
 package prog2_projeto1.model;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
-public class Cliente {
-    private int id;
-    private String nome;
-    private String cpf;
-    private String rg;
-    private String telefone;
-    private String referenciaComercial;
-    private LocalDate dataNascimento;
+public class Cliente extends PessoaFisica implements IMetodos {
 
-    // Getters e setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    private String referencia_comercial;
+    private Date data_nascimento;
+    
+    public Cliente() {
+    }
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public Cliente(String referencia_comercial, Date data_nascimento) {
+        this.referencia_comercial = referencia_comercial;
+        this.data_nascimento = data_nascimento;
+    }
 
-    public String getCpf() { return cpf; }
-    public void setCpf(String cpf) { this.cpf = cpf; }
+    public String getReferencia_comercial() {
+        return referencia_comercial;
+    }
 
-    public String getRg() { return rg; }
-    public void setRg(String rg) { this.rg = rg; }
+    public void setReferencia_comercial(String referencia_comercial) {
+        this.referencia_comercial = referencia_comercial;
+    }
 
-    public String getTelefone() { return telefone; }
-    public void setTelefone(String telefone) { this.telefone = telefone; }
+    public Date getData_nascimento() {
+        return data_nascimento;
+    }
 
-    public String getReferenciaComercial() { return referenciaComercial; }
-    public void setReferenciaComercial(String referenciaComercial) { this.referenciaComercial = referenciaComercial; }
-
-    public LocalDate getDataNascimento() { return dataNascimento; }
-    public void setDataNascimento(LocalDate dataNascimento) { this.dataNascimento = dataNascimento; }
+    public void setData_nascimento(Date data_nascimento) {
+        this.data_nascimento = data_nascimento;
+    }
+  
 }

@@ -1,0 +1,74 @@
+BEGIN;
+
+-- Tabela de categorias
+CREATE TABLE IF NOT EXISTS public.categoria (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    descricao VARCHAR(255) NOT NULL
+);
+
+-- Tabela de clientes
+CREATE TABLE IF NOT EXISTS public.cliente (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cpf VARCHAR(15) NOT NULL,
+    rg VARCHAR(11) NOT NULL,
+    endereco VARCHAR(500) NOT NULL,
+    telefone VARCHAR(14) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    data_cadastro DATE NOT NULL,
+    referencia_comercial VARCHAR(255) NOT NULL,
+    data_nascimento DATE NOT NULL
+);
+
+-- Tabela de vendedores
+CREATE TABLE IF NOT EXISTS public.vendedor (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    cpf VARCHAR(15) NOT NULL,
+    rg VARCHAR(11) NOT NULL,
+    endereco VARCHAR(255) NOT NULL,
+    telefone VARCHAR(14) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    data_cadastro DATE NOT NULL,
+    salario DOUBLE PRECISION NOT NULL,
+    comissao DOUBLE PRECISION NOT NULL
+);
+
+-- Tabela de veículos
+CREATE TABLE IF NOT EXISTS public.veiculo (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    ano INTEGER NOT NULL,
+    modelo VARCHAR(255) NOT NULL,
+    cor VARCHAR(50) NOT NULL,
+    placa VARCHAR(8) NOT NULL,
+    unico_dono BOOLEAN NOT NULL,
+    valor DOUBLE PRECISION NOT NULL,
+    categoria_id INTEGER NOT NULL,
+    CONSTRAINT fk_categoria_id FOREIGN KEY (categoria_id)
+        REFERENCES public.categoria (id)
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+-- Tabela de vendas de veículos
+CREATE TABLE IF NOT EXISTS public.venda_veiculo (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    data_venda DATE NOT NULL DEFAULT CURRENT_DATE,
+    valor_desconto DOUBLE PRECISION,
+    valor_final DOUBLE PRECISION NOT NULL,
+    cliente_id INTEGER NOT NULL,
+    vendedor_id INTEGER NOT NULL,
+    veiculo_id INTEGER NOT NULL,
+    CONSTRAINT venda_veiculo_cliente_id_fkey FOREIGN KEY (cliente_id)
+        REFERENCES public.cliente (id)
+        ON UPDATE NO ACTION ON DELETE NO ACTION,
+    CONSTRAINT venda_veiculo_vendedor_id_fkey FOREIGN KEY (vendedor_id)
+        REFERENCES public.vendedor (id)
+        ON UPDATE NO ACTION ON DELETE NO ACTION,
+    CONSTRAINT venda_veiculo_veiculo_id_fkey FOREIGN KEY (veiculo_id)
+        REFERENCES public.veiculo (id)
+        ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+END;

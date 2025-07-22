@@ -1,25 +1,34 @@
 package prog2_projeto1.model;
 
-public class Vendedor {
-    private int id;
-    private String nome;
-    private String cpf;
-    private String salario;
-    private String telefone;
+public class Vendedor extends PessoaFisica implements IMetodos{
 
-    // Getters e setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    private double salario;
+    private double comissao;
+    
+    public Vendedor() {
+    }
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public Vendedor(double salario, double comissao) {
+        this.salario = salario;
+        this.comissao = comissao;
+    }
 
-    public String getCpf() { return cpf; }
-    public void setCpf(String cpf) { this.cpf = cpf; }
+    public double getSalario() {
+        return salario;
+    }
 
-    public String getSalario() { return salario; }
-    public void setSalario(String salario) { this.salario = salario; }
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
 
-    public String getTelefone() { return telefone; }
-    public void setTelefone(String telefone) { this.telefone = telefone; }
+    public double getComissao() {
+        return comissao;
+    }
+
+    public void setComissao(double comissao) {
+        this.comissao = comissao;
+    }
+
+
+    
 }

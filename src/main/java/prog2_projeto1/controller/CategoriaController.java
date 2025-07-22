@@ -8,22 +8,23 @@ import org.apache.log4j.Logger;
 import prog2_projeto1.dao.CategoriaDAO;
 import prog2_projeto1.model.Categoria;
 
+
 public class CategoriaController {
 
-    CategoriaDAO categoriaDAO = new CategoriaDAO();
+    CategoriaDAO CategoriaDAO = new CategoriaDAO();
     Logger logger = Logger.getLogger(CategoriaController.class);
 
     public boolean salvar(Categoria categoria) {
         try {
-            if (categoriaDAO.salvar(categoria)) {
+            if (CategoriaDAO.salvar(categoria)) {
                 logger.info("Categoria salvo no controller!");
                 return true;
             } else {
-                logger.info("Erro ao salvar categoria no controller!");
+                logger.info("Erro ao salvar Categoria no controller!");
                 return false;
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             logger.error(e.getMessage());
             return false;
         }
@@ -31,11 +32,11 @@ public class CategoriaController {
 
     public boolean alterar(Categoria categoria) {
         try {
-            if (categoriaDAO.alterar(categoria)) {
+            if (CategoriaDAO.alterar(categoria)) {
                 logger.info("Categoria alterado no controller!");
                 return true;
             } else {
-                logger.info("Erro ao alterar categoria no controller!");
+                logger.info("Erro ao alterar Categoria no controller!");
                 return false;
             }
 
@@ -47,11 +48,11 @@ public class CategoriaController {
 
     public boolean excluir(Categoria categoria) {
         try {
-            if (categoriaDAO.excluir(categoria)) {
+            if (CategoriaDAO.excluir(categoria)) {
                 logger.info("Categoria excluido no controller!");
                 return true;
             } else {
-                logger.info("Erro ao excluir categoria no controller!");
+                logger.info("Erro ao excluir Categoria no controller!");
                 return false;
             }
 
@@ -63,12 +64,12 @@ public class CategoriaController {
 
     public List<Categoria> buscarTodos() {
         try {
-            List<Categoria> categorias = categoriaDAO.buscarTodos();
+            List<Categoria> categorias = CategoriaDAO.buscarTodos();
             if (categorias != null) {
                 logger.info("Categoria salvo no controller!");
                 return categorias;
             } else {
-                logger.info("Erro ao salvar categoria no controller!");
+                logger.info("Erro ao salvar Categoria no controller!");
                 return null;
             }
 
@@ -80,11 +81,11 @@ public class CategoriaController {
 
     public Categoria buscar(int id) {
         try {
-            if (categoriaDAO.buscar(id) != null) {
+            if (CategoriaDAO.buscar(id) != null) {
                 logger.info("Categoria encontrado no controller!");
-                return categoriaDAO.buscar(id);
+                return CategoriaDAO.buscar(id);
             } else {
-                logger.info("Erro ao encontrar categoria no controller!");
+                logger.info("Erro ao encontrar Categoria no controller!");
                 return null;
             }
 

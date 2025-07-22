@@ -12,7 +12,7 @@ public class DBConnection {
 	private static DBConnection instance = null;
 	private Connection conn;
 
-	private String url = "jdbc:postgresql://localhost:5432/programacao_2";
+	private String url = "jdbc:postgresql://localhost:5432/prog2_xavier";
 	private String usuario = "postgres";
 	private String senha = "123456";
 
@@ -20,9 +20,9 @@ public class DBConnection {
 		try {
 			Class.forName("org.postgresql.Driver");
 			conn = DriverManager.getConnection(url, usuario, senha);
-			logger.info("Conexão ok!");
+			logger.info("Sucesso na conexão");
 		} catch (Exception ex) {
-			logger.error("Erro ao estabelecer conexão com o postgres : " +
+			logger.error("Erro ao conectar com o BD: " +
 					ex.getMessage());
 		}
 	}

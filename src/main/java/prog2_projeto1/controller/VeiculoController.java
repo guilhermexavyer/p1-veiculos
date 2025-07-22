@@ -23,7 +23,7 @@ public class VeiculoController {
                 return false;
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             logger.error(e.getMessage());
             return false;
         }

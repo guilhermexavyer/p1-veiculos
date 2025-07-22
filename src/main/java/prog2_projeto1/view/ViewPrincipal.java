@@ -1,70 +1,93 @@
 package prog2_projeto1.view;
 
-import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.SwingUtilities;
 
-public class ViewPrincipal extends JFrame {
+public class viewPrincipal extends JFrame {
+    
+    public viewPrincipal(){
 
-    public ViewPrincipal() {
-        setTitle("Emprestimo de Veículos");
-        setSize(600, 400);
-        setExtendedState(MAXIMIZED_BOTH);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+    setTitle("Software - Venda de veículos");
+    setSize(1024, 768);
+    setExtendedState(MAXIMIZED_BOTH);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setLocationRelativeTo(null);
 
-        JMenuBar menuBar = new JMenuBar();
+    JMenuBar menuBar = new JMenuBar();
 
-        JMenu menuCadastro = new JMenu("Cadastros");
-        JMenu menuRelatorios = new JMenu("Relatorios");
+    JMenu menuCadastro = new JMenu("Cadastros");
+    JMenu menuVendas = new JMenu("Venda");
+    JMenu menuRelatorios = new JMenu("Relatórios");
 
-        JMenuItem itemVeiculo = new JMenuItem("Veículos");
-        JMenuItem itemCategoria = new JMenuItem("Categorias");
-        JMenuItem itemCliente = new JMenuItem("Clientes");
-        JMenuItem itemVendedor = new JMenuItem("Vendedors");
-        JMenuItem itemRel1 = new JMenuItem("Relatório 1");
-        JMenuItem itemRel2 = new JMenuItem("Relatório 2");
+    JMenuItem itemCliente = new JMenuItem("Cliente");
+    JMenuItem itemCategoria = new JMenuItem("Categorias");
+    JMenuItem itemVeiculo = new JMenuItem("Veículos");
+    JMenuItem itemVendedor = new JMenuItem("Vendedor");
+    JMenuItem itemVendaVeiculo = new JMenuItem("Venda");
+    JMenuItem itemRelatorioVendas = new JMenuItem("Relatório de Vendas");
 
-        menuCadastro.add(itemVeiculo);
-        menuCadastro.add(itemCategoria);
-        menuCadastro.add(itemCliente);
-        menuCadastro.add(itemVendedor);
+    
+    menuCadastro.add(itemCategoria);
+    menuCadastro.add(itemCliente);
+    menuCadastro.add(itemVeiculo);
+    menuCadastro.add(itemVendedor);
 
-        menuRelatorios.add(itemRel1);
-        menuRelatorios.add(itemRel2);
+    menuVendas.add(itemVendaVeiculo);
 
-        menuBar.add(menuCadastro);
-        menuBar.add(menuRelatorios);
+    menuRelatorios.add(itemRelatorioVendas);
 
-        setJMenuBar(menuBar);
+    menuBar.add(menuCadastro);
+    menuBar.add(menuVendas);
+    menuBar.add(menuRelatorios);
 
-        itemVeiculo.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                ViewVeiculo.main(null);
-            }
-        });
+    setJMenuBar(menuBar);
 
-        itemCategoria.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                ViewCategoria.main(null);
-            }
-        });
+    
 
-        itemCliente.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                ViewCliente.main(null);
-            }
-        });
+    itemCategoria.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            viewCategoria.main(null);
+        }
+    });
 
-        itemVendedor.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                ViewVendedor.main(null);
-            }
-        });
+    itemCliente.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            viewCliente.main(null);
+        }
+    });
+
+    itemVeiculo.addActionListener(new ActionListener() { 
+        public void actionPerformed(ActionEvent e) {
+            viewVeiculo.main(null);
+        }
+    });
+
+    itemVendedor.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            viewVendedor.main(null);
+        }
+    });
+
+    itemVendaVeiculo.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            viewVendaVeiculo.main(null);
+        }
+    });
+    itemRelatorioVendas.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        viewRelatorioVendasPorPeriodo.main(null);
     }
+});
+}
+public static void main(String[] args) {
+    SwingUtilities.invokeLater(() -> {
+            new viewPrincipal().setVisible(true);
+    });
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new ViewPrincipal().setVisible(true);
-        });
-    }
+}
 }
