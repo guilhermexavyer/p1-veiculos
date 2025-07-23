@@ -1,5 +1,4 @@
 package prog2_projeto1.dao;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -21,8 +20,8 @@ public class ClienteDAO {
             Connection connection = DBConnection.getInstance().getConnection();
 
             String insertcliente = "INSERT INTO cliente " +
-                    "(nome, cpf, rg, endereco, telefone, email, data_cadastro, referencia_comercial, data_nascimento)" +
-                    "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                                "(nome, cpf, rg, endereco, telefone, email, data_cadastro, referencia_comercial, data_nascimento)" +
+                                "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement1 = connection.prepareStatement(insertcliente);
             preparedStatement1.setString(1, modelo.getNome());

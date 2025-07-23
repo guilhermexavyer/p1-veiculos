@@ -16,10 +16,10 @@ public class VeiculoController {
     public boolean salvar(Veiculo veiculo) {
         try {
             if (veiculoDAO.salvar(veiculo)) {
-                logger.info("Veículo salvo no controller!");
+                logger.info("Veículo salvo [controller]");
                 return true;
             } else {
-                logger.info("Erro ao salvar veículo no controller!");
+                logger.info("Erro ao salvar veículo [controller]");
                 return false;
             }
 
@@ -32,10 +32,10 @@ public class VeiculoController {
     public boolean alterar(Veiculo veiculo) {
         try {
             if (veiculoDAO.alterar(veiculo)) {
-                logger.info("Veículo alterado no controller!");
+                logger.info("Veículo alterado [controller]");
                 return true;
             } else {
-                logger.info("Erro ao alterar veículo no controller!");
+                logger.info("Erro ao alterar veículo [controller]");
                 return false;
             }
 
@@ -48,10 +48,10 @@ public class VeiculoController {
     public boolean excluir(Veiculo veiculo) {
         try {
             if (veiculoDAO.excluir(veiculo)) {
-                logger.info("Veículo excluido no controller!");
+                logger.info("Veículo excluido [controller]");
                 return true;
             } else {
-                logger.info("Erro ao excluir veículo no controller!");
+                logger.info("Erro ao excluir veículo [controller]");
                 return false;
             }
 
@@ -65,10 +65,10 @@ public class VeiculoController {
         try {
             List<Veiculo> veiculos = veiculoDAO.buscarTodos();
             if (veiculos != null) {
-                logger.info("Veículo salvo no controller!");
+                logger.info("Veículo salvo [controller]");
                 return veiculos;
             } else {
-                logger.info("Erro ao salvar veículo no controller!");
+                logger.info("Erro ao salvar veículo [controller]");
                 return null;
             }
 
@@ -81,10 +81,10 @@ public class VeiculoController {
     public Veiculo buscar(int id) {
         try {
             if (veiculoDAO.buscar(id) != null) {
-                logger.info("Veículo encontrado no controller!");
+                logger.info("Veículo encontrado [controller]");
                 return veiculoDAO.buscar(id);
             } else {
-                logger.info("Erro ao encontrar veículo no controller!");
+                logger.info("Erro ao encontrar veículo [controller]");
                 return null;
             }
 

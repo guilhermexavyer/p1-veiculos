@@ -1,5 +1,4 @@
 package prog2_projeto1.dao;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -7,9 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.log4j.Logger;
-
 import prog2_projeto1.DBConnection;
 import prog2_projeto1.model.Vendedor;
 
@@ -23,8 +20,8 @@ public class VendedorDAO {
             Connection connection = DBConnection.getInstance().getConnection();
 
             String insertVendedor = "INSERT INTO vendedor " +
-                    "(data_cadastro, nome, cpf, rg, endereco, telefone, email, salario, comissao) " +
-                    "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                                "(data_cadastro, nome, cpf, rg, endereco, telefone, email, salario, comissao) " +
+                                "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement1 = connection.prepareStatement(insertVendedor);
             preparedStatement1.setDate(1, (Date) modelo.getData_cadastro());
@@ -126,7 +123,6 @@ public class VendedorDAO {
     }
 
     public boolean buscar(Vendedor modelo) throws SQLException {
-
         return false;
     }
 

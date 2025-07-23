@@ -15,10 +15,10 @@ public class VendaVeiculoController {
     public boolean salvar(VendaVeiculo vendaVeiculo) {
         try {
             if (vendaVeiculoDAO.salvar(vendaVeiculo)) {
-                logger.info("Venda Veiculo salvo no controller!");
+                logger.info("Venda Veiculo salvo [controller]");
                 return true;
             } else {
-                logger.info("Erro ao salvar veículo no controller!");
+                logger.info("Erro ao salvar veículo [controller]");
                 return false;
             }
 
@@ -31,10 +31,10 @@ public class VendaVeiculoController {
     public boolean alterar(VendaVeiculo vendaVeiculo) {
         try {
             if (vendaVeiculoDAO.alterar(vendaVeiculo)) {
-                logger.info("Venda Veiculo alterado no controller!");
+                logger.info("Venda Veiculo alterado [controller]");
                 return true;
             } else {
-                logger.info("Erro ao alterar veículo no controller!");
+                logger.info("Erro ao alterar veículo [controller]");
                 return false;
             }
 
@@ -47,10 +47,10 @@ public class VendaVeiculoController {
     public boolean excluir(VendaVeiculo vendaVeiculo) {
         try {
             if (vendaVeiculoDAO.excluir(vendaVeiculo)) {
-                logger.info("Venda Veiculo excluido no controller!");
+                logger.info("Venda Veiculo excluido [controller]");
                 return true;
             } else {
-                logger.info("Erro ao excluir veículo no controller!");
+                logger.info("Erro ao excluir veículo [controller]");
                 return false;
             }
 
@@ -64,10 +64,10 @@ public class VendaVeiculoController {
         try {
             List<VendaVeiculo> vendaVeiculos = vendaVeiculoDAO.buscarTodos();
             if (vendaVeiculos != null) {
-                logger.info("Venda Veiculo salvo no controller!");
+                logger.info("Venda Veiculo salvo [controller]");
                 return vendaVeiculos;
             } else {
-                logger.info("Erro ao salvar veículo no controller!");
+                logger.info("Erro ao salvar veículo [controller]");
                 return null;
             }
 
@@ -80,10 +80,10 @@ public class VendaVeiculoController {
     public VendaVeiculo buscar(int id) {
         try {
             if (vendaVeiculoDAO.buscar(id) != null) {
-                logger.info("Venda Veiculo encontrado no controller!");
+                logger.info("Venda Veiculo encontrado [controller]");
                 return vendaVeiculoDAO.buscar(id);
             } else {
-                logger.info("Erro ao encontrar veículo no controller!");
+                logger.info("Erro ao encontrar veículo [controller]");
                 return null;
             }
 

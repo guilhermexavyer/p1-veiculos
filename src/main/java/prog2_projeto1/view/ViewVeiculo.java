@@ -1,5 +1,4 @@
 package prog2_projeto1.view;
-
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

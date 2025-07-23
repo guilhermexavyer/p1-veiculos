@@ -1,5 +1,4 @@
 package prog2_projeto1.model;
-
 import java.util.List;
 
 public interface IMetodos {

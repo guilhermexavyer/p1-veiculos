@@ -1,14 +1,11 @@
 package prog2_projeto1.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.log4j.Logger;
-
 import prog2_projeto1.DBConnection;
 import prog2_projeto1.model.Veiculo;
 
@@ -22,8 +19,7 @@ public class VeiculoDAO {
             Connection connection = DBConnection.getInstance().getConnection();
 
             String insertVeiculo = "INSERT INTO veiculo " +
-                    "(nome, ano, modelo, categoria_id, cor, placa, unico_dono, valor) " +
-                    "values (?, ?, ?, ?, ?, ?, ?, ?)";
+                    "(nome, ano, modelo, categoria_id, cor, placa, unico_dono, valor) " + "values (?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement1 = connection.prepareStatement(insertVeiculo);
             preparedStatement1.setString(1, modelo.getNome());

@@ -1,5 +1,4 @@
 package prog2_projeto1.model;
-
 import java.sql.Date;
 
 public class Cliente extends PessoaFisica implements IMetodos {

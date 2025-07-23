@@ -16,10 +16,10 @@ public class VendedorController {
     public boolean salvar(Vendedor vendedor) {
         try {
             if (vendedorDAO.salvar(vendedor)) {
-                logger.info("Vendedor salvo no controller!");
+                logger.info("Vendedor salvo [controller]");
                 return true;
             } else {
-                logger.info("Erro ao salvar vendedor no controller!");
+                logger.info("Erro ao salvar vendedor [controller]");
                 return false;
             }
 
@@ -32,10 +32,10 @@ public class VendedorController {
     public boolean alterar(Vendedor vendedor) {
         try {
             if (vendedorDAO.alterar(vendedor)) {
-                logger.info("Vendedor alterado no controller!");
+                logger.info("Vendedor alterado [controller]");
                 return true;
             } else {
-                logger.info("Erro ao alterar vendedor no controller!");
+                logger.info("Erro ao alterar vendedor [controller]");
                 return false;
             }
 
@@ -48,10 +48,10 @@ public class VendedorController {
     public boolean excluir(Vendedor vendedor) {
         try {
             if (vendedorDAO.excluir(vendedor)) {
-                logger.info("Vendedor excluido no controller!");
+                logger.info("Vendedor excluido [controller]");
                 return true;
             } else {
-                logger.info("Erro ao excluir vendedor no controller!");
+                    logger.info("Erro ao excluir vendedor [controller]");
                 return false;
             }
 
@@ -65,10 +65,10 @@ public class VendedorController {
         try {
             List<Vendedor> vendedors = vendedorDAO.buscarTodos();
             if (vendedors != null) {
-                logger.info("Vendedor salvo no controller!");
+                logger.info("Vendedor salvo [controller]");
                 return vendedors;
             } else {
-                logger.info("Erro ao salvar vendedor no controller!");
+                logger.info("Erro ao salvar vendedor [controller]");
                 return null;
             }
 
@@ -81,10 +81,10 @@ public class VendedorController {
     public Vendedor buscar(int id) {
         try {
             if (vendedorDAO.buscar(id) != null) {
-                logger.info("Vendedor encontrado no controller!");
+                logger.info("Vendedor encontrado [controller]");
                 return vendedorDAO.buscar(id);
             } else {
-                logger.info("Erro ao encontrar vendedor no controller!");
+                logger.info("Erro ao encontrar vendedor [controller]");
                 return null;
             }
 

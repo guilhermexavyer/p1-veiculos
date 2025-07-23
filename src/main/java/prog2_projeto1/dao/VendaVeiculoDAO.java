@@ -1,5 +1,4 @@
 package prog2_projeto1.dao;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -21,8 +20,8 @@ public class VendaVeiculoDAO {
             Connection connection = DBConnection.getInstance().getConnection();
 
             String insertVendaVeiculo = "INSERT INTO venda_veiculo " +
-                    "(data_venda, valor_desconto, valor_final, veiculo_id, vendedor_id, cliente_id) " +
-                    "values (?, ?, ?, ?, ?, ?)";
+                                    "(data_venda, valor_desconto, valor_final, veiculo_id, vendedor_id, cliente_id) " +
+                                    "values (?, ?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement1 = connection.prepareStatement(insertVendaVeiculo);
             preparedStatement1.setDate(1, Date.valueOf(modelo.getData_venda()));

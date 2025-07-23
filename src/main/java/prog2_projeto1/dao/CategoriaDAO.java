@@ -1,14 +1,11 @@
 package prog2_projeto1.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.log4j.Logger;
-
 import prog2_projeto1.DBConnection;
 import prog2_projeto1.model.Categoria;
 
@@ -21,9 +18,7 @@ public class CategoriaDAO {
         try {
             Connection connection = DBConnection.getInstance().getConnection();
 
-            String insertcategoria = "INSERT INTO categoria " +
-                    "(descricao)" +
-                    "values (?)";
+            String insertcategoria = "INSERT INTO categoria " + "(descricao)" + "values (?)";
 
             PreparedStatement preparedStatement1 = connection.prepareStatement(insertcategoria);
             preparedStatement1.setString(1, modelo.getDescricao());

@@ -1,5 +1,4 @@
 package prog2_projeto1.model;
-
 import java.time.LocalDate;
 
 public class VendaVeiculo extends EntidadeBase implements IMetodos {

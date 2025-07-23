@@ -15,10 +15,10 @@ public class ClienteController {
     public boolean salvar(Cliente cliente) {
         try {
             if (ClienteDAO.salvar(cliente)) {
-                logger.info("Cliente salvo no controller!");
+                logger.info("Cliente salvo [controller]");
                 return true;
             } else {
-                logger.info("Erro ao salvar Cliente no controller!");
+                logger.info("Erro ao salvar cliente [controller]");
                 return false;
             }
 
@@ -31,10 +31,10 @@ public class ClienteController {
     public boolean alterar(Cliente cliente) {
         try {
             if (ClienteDAO.alterar(cliente)) {
-                logger.info("Cliente alterado no controller!");
+                logger.info("Cliente alterado [controller]");
                 return true;
             } else {
-                logger.info("Erro ao alterar Cliente no controller!");
+                logger.info("Erro ao alterar cliente [controller]");
                 return false;
             }
 
@@ -47,10 +47,10 @@ public class ClienteController {
     public boolean excluir(Cliente cliente) {
         try {
             if (ClienteDAO.excluir(cliente)) {
-                logger.info("Cliente excluido no controller!");
+                logger.info("Cliente excluido [controller]");
                 return true;
             } else {
-                logger.info("Erro ao excluir Cliente no controller!");
+                logger.info("Erro ao excluir cliente [controller]");
                 return false;
             }
 
@@ -64,10 +64,10 @@ public class ClienteController {
         try {
             List<Cliente> clientes = ClienteDAO.buscarTodos();
             if (clientes != null) {
-                logger.info("Cliente salvo no controller!");
+                logger.info("Cliente salvo [controller]");
                 return clientes;
             } else {
-                logger.info("Erro ao salvar Cliente no controller!");
+                logger.info("Erro ao salvar cliente [controller]");
                 return null;
             }
 
@@ -80,10 +80,10 @@ public class ClienteController {
     public Cliente buscar(int id) {
         try {
             if (ClienteDAO.buscar(id) != null) {
-                logger.info("Cliente encontrado no controller!");
+                logger.info("Cliente encontrado [controller]");
                 return ClienteDAO.buscar(id);
             } else {
-                logger.info("Erro ao encontrar Cliente no controller!");
+                logger.info("Erro ao encontrar cliente [controller]");
                 return null;
             }
 
