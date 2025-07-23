@@ -8,7 +8,7 @@ import prog2_projeto1.controller.VendedorController;
 import prog2_projeto1.model.Vendedor;
 
 
-public class viewVendedor {
+public class ViewVendedor {
 
     public static void main(String[] args) {
         JFrame tela = new JFrame("Vendedor");

@@ -22,7 +22,7 @@ public class viewRelatorioVendasPorPeriodo {
         panel.setLayout(null);
         tela.add(panel);
 
-        JLabel lblDataInicio = new JLabel("Data Início (dd/MM/aaaa):");
+        JLabel lblDataInicio = new JLabel("Data Início (dd/mm/aaaa):");
         lblDataInicio.setBounds(10, 10, 200, 25);
         panel.add(lblDataInicio);
 
@@ -30,7 +30,7 @@ public class viewRelatorioVendasPorPeriodo {
         txtDataInicio.setBounds(220, 10, 150, 25);
         panel.add(txtDataInicio);
 
-        JLabel lblDataFim = new JLabel("Data Fim (dd/MM/aaaa):");
+        JLabel lblDataFim = new JLabel("Data Fim (dd/mm/aaaa):");
         lblDataFim.setBounds(10, 40, 200, 25);
         panel.add(lblDataFim);
 

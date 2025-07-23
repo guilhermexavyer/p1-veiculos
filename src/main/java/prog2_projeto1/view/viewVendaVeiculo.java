@@ -12,7 +12,7 @@ import prog2_projeto1.model.Cliente;
 import prog2_projeto1.model.VendaVeiculo;
 import prog2_projeto1.model.Vendedor;
 
-public class viewVendaVeiculo {
+public class ViewVendaVeiculo {
 
     public static void main(String[] args) {
         JFrame tela = new JFrame("Venda de veículo");

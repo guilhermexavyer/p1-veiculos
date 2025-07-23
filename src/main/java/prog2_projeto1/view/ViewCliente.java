@@ -6,7 +6,7 @@ import javax.swing.table.DefaultTableModel;
 import prog2_projeto1.controller.ClienteController;
 import prog2_projeto1.model.Cliente;
 
-public class viewCliente {
+public class ViewCliente {
 
     public static void main(String[] args) {
         JFrame tela = new JFrame("Clientes");

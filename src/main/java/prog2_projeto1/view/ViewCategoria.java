@@ -6,7 +6,7 @@ import javax.swing.table.DefaultTableModel;
 import prog2_projeto1.controller.CategoriaController;
 import prog2_projeto1.model.Categoria;
 
-public class viewCategoria {
+public class ViewCategoria {
 
     public static void main(String[] args) {
         JFrame tela = new JFrame("Categorias");

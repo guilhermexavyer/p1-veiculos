@@ -7,7 +7,7 @@ import prog2_projeto1.controller.VeiculoController;
 import prog2_projeto1.model.Categoria;
 import prog2_projeto1.model.Veiculo;
 
-public class viewVeiculo {
+public class ViewVeiculo {
 
     public static void main(String[] args) {
         JFrame tela = new JFrame("Veículos");

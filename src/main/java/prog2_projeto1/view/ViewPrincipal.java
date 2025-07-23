@@ -8,9 +8,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.SwingUtilities;
 
-public class viewPrincipal extends JFrame {
+public class ViewPrincipal extends JFrame {
     
-    public viewPrincipal(){
+    public ViewPrincipal(){
 
     setTitle("Software - Venda de veículos");
     setSize(1024, 768);
@@ -51,31 +51,31 @@ public class viewPrincipal extends JFrame {
 
     itemCategoria.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            viewCategoria.main(null);
+            ViewCategoria.main(null);
         }
     });
 
     itemCliente.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            viewCliente.main(null);
+            ViewCliente.main(null);
         }
     });
 
     itemVeiculo.addActionListener(new ActionListener() { 
         public void actionPerformed(ActionEvent e) {
-            viewVeiculo.main(null);
+            ViewVeiculo.main(null);
         }
     });
 
     itemVendedor.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            viewVendedor.main(null);
+            ViewVendedor.main(null);
         }
     });
 
     itemVendaVeiculo.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            viewVendaVeiculo.main(null);
+            ViewVendaVeiculo.main(null);
         }
     });
     itemRelatorioVendas.addActionListener(new ActionListener() {
@@ -86,7 +86,7 @@ public class viewPrincipal extends JFrame {
 }
 public static void main(String[] args) {
     SwingUtilities.invokeLater(() -> {
-            new viewPrincipal().setVisible(true);
+            new ViewPrincipal().setVisible(true);
     });
 
 }
