@@ -47,7 +47,7 @@ public class ViewVendaVeiculo {
         panelCadastro.add(txtId);
 
         y += 30;
-        JLabel lblData_venda = new JLabel("Data Venda dd/mm/aaaa");
+        JLabel lblData_venda = new JLabel("Data Venda dd/MM/aaaa");
         lblData_venda.setBounds(10, y, 150, 25);
         panelCadastro.add(lblData_venda);
 
@@ -129,11 +129,11 @@ public class ViewVendaVeiculo {
             VendaVeiculoController vendaVeiculoController = new VendaVeiculoController();
             String dataTexto = txtData_venda.getText();
             try {
-                java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("dd/mm/yyyy");
+                java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 java.time.LocalDate dataVenda = java.time.LocalDate.parse(dataTexto, formatter);
                 vendaVeiculo.setData_venda(dataVenda);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Data inválida! Use o formato dd/mm/yyyy.");
+                JOptionPane.showMessageDialog(null, "Data inválida! Use o formato dd/MM/yyyy.");
                 ex.printStackTrace();
                 return;
             }
@@ -155,11 +155,11 @@ public class ViewVendaVeiculo {
             vendaVeiculo.setId(Integer.parseInt(txtId.getText()));
             String dataTexto = txtData_venda.getText();
             try {
-                java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("dd/mm/yyyy");
+                java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 java.time.LocalDate dataVenda = java.time.LocalDate.parse(dataTexto, formatter);
                 vendaVeiculo.setData_venda(dataVenda);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Data inválida! Use o formato dd/mm/yyyy.");
+                JOptionPane.showMessageDialog(null, "Data inválida! Use o formato dd/MM/yyyy.");
                 ex.printStackTrace();
                 return;
             }
@@ -237,7 +237,7 @@ public class ViewVendaVeiculo {
             modeloTabela.setRowCount(0);
             VendaVeiculoController vendaVeiculoController = new VendaVeiculoController();
             List<VendaVeiculo> vendaVeiculos = vendaVeiculoController.buscarTodos();
-            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/mm/yyyy");
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy");
 
             for (VendaVeiculo v : vendaVeiculos) {
                 String dataVenda = v.getData_venda() != null ? 
